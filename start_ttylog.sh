@@ -33,7 +33,7 @@
      echo "User prompt is ${USER}@${HOST}" >> $LOGPATH
      echo "Home directory is ${HOME}" >> $LOGPATH
 
-     sudo /usr/local/src/ttylog/ttylog $TTY >> $LOGPATH 2>/dev/null &
+     sudo /usr/local/src/ttylog $TTY >> $LOGPATH 2>/dev/null &
 
      bash
      echo "END tty_sid:$CNT" >> $LOGPATH
