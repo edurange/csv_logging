@@ -188,7 +188,7 @@ my $line_to_record_first_character = undef;
 if (open TRACE, $read) {
   my $fds = {};
   while (<TRACE>) {
-            #$1 = (read|write);$2=(\d+);$3=(.*). Its split by expressions in brackets
+	    #$1 = (read|write);$2=(\d+);$3=(.*). Its split by expressions in brackets
     if (/(read|write)\((\d+), "(.*)"/) {
       my $op = $1;
       my $fd = $2;
@@ -197,8 +197,8 @@ if (open TRACE, $read) {
       #The above 2 lines append file descriptors in fds, and sort them. fds will have values (3, 9, 11) after those 3 values get appended
       if (3 <= @fds) {
         ($fd_bandwidth, $fd_keyboard, $fd_terminal) = @fds;
-        #Backup the fd_terminal system call. We require this to obtain the first character.
-        $line_to_record_first_character = $_;
+	#Backup the fd_terminal system call. We require this to obtain the first character.
+	$line_to_record_first_character = $_;
         last;
       }
       if (!$input and
@@ -245,12 +245,12 @@ if ($output) {
 my $first_line_of_loop_backup = undef;
 while (<TRACE>) {
   #We are mainly concerned with the output 'if' section (the next one). If we are just reading the file, the next 'if' section (with $input) won't execute. The $bandwidth section will also not execute.
-
-  #We recover the first character. We set current line variable (that is $_) to the strace line for 1st character.
+  
+  #We recover the first character. We set current line variable (that is $_) to the strace line for 1st character. 
   if (defined $line_to_record_first_character) {
-        $first_line_of_loop_backup = $_;
-        $_ = $line_to_record_first_character;
-        }
+	$first_line_of_loop_backup = $_;
+	$_ = $line_to_record_first_character;
+	}
 
   if ($input && /write\($fd_keyboard, "(.*)"/) {
     #This if section is not executed
@@ -281,7 +281,7 @@ while (<TRACE>) {
     $s =~ s/\\\\/\\/g;
 
     if ($file_line =~ /(\d+)/ ) {
-        $tstamp = $1;
+    	$tstamp = $1;
         }
     #Check for the presence of '\r\n' and prepend ';' and timestamp to '\r\n'
     if ($s =~ /^\r\n/) {
@@ -312,9 +312,9 @@ while (<TRACE>) {
 
   #We restore the first line. 'redo' allows us to go to start of the loop
   if (defined $line_to_record_first_character) {
-          $line_to_record_first_character = undef;
-          $_ = $first_line_of_loop_backup;
-          redo;
+	  $line_to_record_first_character = undef;
+	  $_ = $first_line_of_loop_backup;
+	  redo;
   }
 }
 
