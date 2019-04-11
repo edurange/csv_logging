@@ -285,7 +285,7 @@ while (<TRACE>) {
         }
     #Check for the presence of '\r\n' and prepend ';' and timestamp to '\r\n'
     if ($s =~ /^\r\n/) {
-        $s = ';' . "$tstamp" . $s;
+        $s = ' ' . "$tstamp" . $s;
         }
 
     if (open OUT, ">>$output") {
