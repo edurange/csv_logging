@@ -13,7 +13,7 @@ def remove_ansi_escape_sequences(input_string):
     """Remove the ansi escape sequences"""
     ansi_escape = re.compile(r'(\x9B|\x1B\[)[0-?]*[ -/]*[@-~]')
     result = ansi_escape.sub('',input_string)
-    return ansi_escape.sub('', input_string)
+    return result
 
 def decode(stream):
     buf = []
@@ -151,6 +151,9 @@ if __name__ == "__main__":
             user_prompt = ttylog_sessions[current_session_id]['initial_prompt']
             right_dollar_part = right_dollar_part[1:]
             line_split = right_dollar_part.split(';')
+            #if timestamp is not available use -1
+            if line_split[-1] == '':
+                line_split[-1] = '-1'
             line_timestamp = int(line_split[-1])
             line_command = ';'.join(line_split[:-1] )
             continue
