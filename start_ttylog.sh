@@ -30,8 +30,8 @@
      sudo chmod ugo+rw $LOGPATH
 
      echo "starting session w tty_sid:$CNT" >> $LOGPATH
-     echo "User prompt is ${USER}@${HOST}" >> $LOGPATH
-     echo "Home directory is ${HOST}" >> $LOGPATH
+     #echo "User prompt is ${USER}@${HOST}" >> $LOGPATH
+     #echo "Home directory is ${HOST}" >> $LOGPATH
 
      sudo /usr/local/src/ttylog $TTY >> $LOGPATH 2>/dev/null &
 
