@@ -5,7 +5,7 @@
      TTY_CMD=$(tty)
      TTY=${TTY_CMD:5}
      #HN=$(hostname)
-     #HOST=$(hostname)
+     HOST=$(hostname)
      #EXP=$(echo $HN | awk -F. '{print $(NF - 1)}')
      #PROJ=$(echo $HN | awk -F. '{print $(NF)}')
      USER=$(whoami)
@@ -30,7 +30,7 @@
      sudo chmod ugo+rw $LOGPATH
 
      echo "starting session w tty_sid:$CNT" >> $LOGPATH
-     echo "User prompt is ${$(whoami)}@${$(hostname)}" >> $LOGPATH
+     echo "User prompt is ${USER}@${$HOST}" >> $LOGPATH
      echo "Home directory is ${$(hostname)}" >> $LOGPATH
 
      sudo /usr/local/src/ttylog $TTY >> $LOGPATH 2>/dev/null &
