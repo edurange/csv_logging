@@ -152,9 +152,10 @@ if __name__ == "__main__":
             right_dollar_part = right_dollar_part[1:]
             line_split = right_dollar_part.split(';')
             #if timestamp is not available use -1
-            if line_split[-1] == '':
-                line_split[-1] = '-1'
-            line_timestamp = int(line_split[-1])
+            try:
+                line_timestamp = int(line_split[-1])
+            except ValueError:
+                line_timestamp = "Not found"
             line_command = ';'.join(line_split[:-1] )
             continue
 
