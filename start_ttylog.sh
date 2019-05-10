@@ -10,21 +10,21 @@
      #PROJ=$(echo $HN | awk -F. '{print $(NF)}')
      USER=$(whoami)
 
-     sudo mkdir -p /var/log/ttylog/
+     sudo mkdir -p /usr/local/src/logs/
 
      if [ -e "/var/log/ttylog/count.$(hostname)" ]; then
-         CNT=$(cat /var/log/ttylog/count.$(hostname).$(whoami))
+         CNT=$(cat /usr/local/src/logs/count.$(hostname).$(whoami))
          let CNT++
-         echo $CNT > /var/log/ttylog/count.$(hostname).$(whoami)
+         echo $CNT > /usr/local/src/logs/count.$(hostname).$(whoami)
      else
-         sudo touch /var/log/ttylog/count.$(hostname).$(whoami)
-         sudo chmod ugo+rw /var/log/ttylog/count.$(hostname).$(whoami)
-         echo "0" > /var/log/ttylog/count.$(hostname).$(whoami)
-         CNT=$(cat /var/log/ttylog/count.$(hostname).$(whoami))
+         sudo touch /usr/local/src/logs/count.$(hostname).$(whoami)
+         sudo chmod ugo+rw /usr/local/src/logs/count.$(hostname).$(whoami)
+         echo "0" > /usr/local/src/logs/count.$(hostname).$(whoami)
+         CNT=$(cat /usr/local/src/logs/count.$(hostname).$(whoami))
      fi
 
      export TTY_SID=$CNT
-     LOGPATH=/var/log/ttylog/ttylog.$(hostname).$(whoami).$CNT
+     LOGPATH=/usr/local/src/logs/ttylog.$(hostname).$(whoami).$CNT
 
      sudo touch $LOGPATH
      sudo chmod ugo+rw $LOGPATH
