@@ -9,6 +9,12 @@ import re
 import codecs
 import datetime
 
+class DevNull:
+    def write(self, msg):
+        pass
+
+sys.stderr = DevNull()
+
 def remove_ansi_escape_sequences(input_string):
     """Remove the ansi escape sequences"""
     ansi_escape = re.compile(r'(\x9B|\x1B\[)[0-?]*[ -/]*[@-~]')
