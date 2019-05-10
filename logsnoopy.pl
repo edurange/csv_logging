@@ -22,6 +22,6 @@
 while(1)
 {
     system("cat /usr/local/src/logs/ttylog.* > /usr/local/src/logs/alltty.\$\(hostname\).\$\(whoami\)");
-    system("python3 /usr/local/src/analyze.py /usr/local/src/logs/alltty.\$\(hostname\).\$\(whoami\)" . " /usr/local/src/logs/cli.\$\(hostname\).\$\(whoami\).csv &");
+    system("python3 /usr/local/src/analyze.py /usr/local/src/logs/alltty.\$\(hostname\).\$\(whoami\)" . " /usr/local/src/logs/cli.\$\(hostname\).\$\(whoami\).csv");
     sleep(60);
 }
