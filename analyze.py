@@ -147,7 +147,7 @@ if __name__ == "__main__":
                 output_prevous_command += output_till_start_of_prompt + "\n"
                 decoded_line = decoded_line[start_of_prompt:]
 
-            ttylog_sessions[current_session_id]['lines'].append([user_prompt, line_timestamp, current_working_directory, line_command, output_prevous_command])
+            ttylog_sessions[current_session_id]['lines'].append([user_prompt, line_timestamp, current_working_directory, line_command, output_prevous_command, 'CMEND'])
             output_prevous_command = ''
 
             #Sample line is 'test@intro:~$ done;1553743085'
@@ -176,7 +176,7 @@ if __name__ == "__main__":
             # start_of_last_prompt = decoded_line.rfind(root_prompt)
             # decoded_line = decoded_line[start_of_last_prompt:]
 
-            ttylog_sessions[current_session_id]['lines'].append([root_prompt, line_timestamp, current_working_directory, line_command, output_prevous_command])
+            ttylog_sessions[current_session_id]['lines'].append([root_prompt, line_timestamp, current_working_directory, line_command, output_prevous_command, 'CMEND'])
             output_prevous_command = ''
 
             left_hash_part, right_hash_part = decoded_line.split('#',1)
@@ -192,7 +192,7 @@ if __name__ == "__main__":
 
         #Get the session exit line
         elif r'END tty_sid' in decoded_line:
-            ttylog_sessions[current_session_id]['lines'].append([user_prompt, line_timestamp, current_working_directory, line_command, output_prevous_command])
+            ttylog_sessions[current_session_id]['lines'].append([user_prompt, line_timestamp, current_working_directory, line_command, output_prevous_command, 'CMEND'])
             output_prevous_command = ''
             continue
 
