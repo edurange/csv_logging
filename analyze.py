@@ -213,8 +213,7 @@ if __name__ == "__main__":
     csvwriter = csv.writer(csvfile, delimiter=',', quotechar='%', quoting=csv.QUOTE_MINIMAL)
 
     for line in sorted_ttylog_lines:
-        if len(line) > 5 & line != "%,CMEND":
-            csvwriter.writerow(line.rstrip("\r\n"))
+        csvwriter.writerow(line)
 
     csvfile.close()
 
