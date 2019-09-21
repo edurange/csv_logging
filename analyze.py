@@ -213,7 +213,7 @@ if __name__ == "__main__":
     csvwriter = csv.writer(csvfile, delimiter=',', quotechar='%', quoting=csv.QUOTE_MINIMAL)
 
     for line in sorted_ttylog_lines:
-        csvwriter.writerow(line)
+        csvwriter.writerow(line.rstrip("\n\r"))
 
     csvfile.close()
 
